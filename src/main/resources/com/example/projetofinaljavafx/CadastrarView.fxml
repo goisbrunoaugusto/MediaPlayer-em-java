@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetofinaljavafx.ViewController">
+   <children>
+      <TextField fx:id="cadastroUsuarioField" layoutX="50.0" layoutY="105.0" />
+      <Button fx:id="cadastrarBotao" layoutX="110.0" layoutY="328.0" mnemonicParsing="false" onAction="#Cadastrar" text="Cadastrar" />
+      <Button fx:id="voltarBotao" layoutX="43.0" layoutY="328.0" mnemonicParsing="false" onAction="#Voltar" text="Voltar" />
+      <Label layoutX="50.0" layoutY="77.0" text="Nome de Usuário" />
+      <PasswordField fx:id="cadastroSenhaField" layoutX="50.0" layoutY="188.0" />
+      <CheckBox fx:id="vipCheckBox" layoutX="50.0" layoutY="250.0" mnemonicParsing="false" onAction="#ehVip" text="Usuario VIP" />
+      <Label layoutX="50.0" layoutY="167.0" text="Senha" />
+      <Label fx:id="labelErro" layoutX="272.0" layoutY="109.0" />
+   </children>
+</AnchorPane>

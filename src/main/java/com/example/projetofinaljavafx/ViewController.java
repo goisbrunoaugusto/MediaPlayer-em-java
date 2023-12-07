@@ -1,16 +1,27 @@
 package com.example.projetofinaljavafx;
 
+import com.example.projetofinaljavafx.modelo.Musica;
 import com.example.projetofinaljavafx.modelo.UsuarioVIP;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
-
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class ViewController{
+public class ViewController implements Initializable{
     Player player = new Player();
     //cadastrar
     @FXML
@@ -38,7 +49,10 @@ public class ViewController{
     private Button AdicionarPlaylistBotao;
 
     @FXML
-    private ListView<?> MusicasListView;
+    private ListView<String> MusicasListView;
+
+    @FXML
+    private ListView<?> MusicasListViewComum;
 
     @FXML
     private ListView<?> PlaylistListView;
@@ -62,12 +76,12 @@ public class ViewController{
     private PasswordField senhaField;
 
     @FXML
-    public void initialize() throws IOException {
+    public void initialize(URL arg0, ResourceBundle arg1) {
         player.carregarUsuarios();
         player.carregarDiretorios();
         player.carregarMusicas();
-
     }
+
     //----------------------------------------------
     //cadastrar
     @FXML
@@ -97,7 +111,17 @@ public class ViewController{
     //Usuario VIP
     @FXML
     public void adicionarDiretorio(ActionEvent actionEvent) {
+        Node source = (Node) actionEvent.getSource();
+        Window stage = source.getScene().getWindow();
 
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+
+        directoryChooser.setTitle("Escolha um arquivo");
+
+        File diretorio = directoryChooser.showDialog(stage);
+        if (diretorio != null) {
+            player.cadastrarDiretorio(diretorio.getAbsolutePath());
+        }
     }
 
     @FXML

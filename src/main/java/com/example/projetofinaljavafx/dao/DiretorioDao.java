@@ -12,6 +12,11 @@ public class DiretorioDao {
     private ArrayList<String> diretorios = new ArrayList<>();
 
     public void cadastrarDiretorio(String caminho) throws IOException {
+        for (String dir : diretorios) {
+            if(dir.equals(caminho)) {
+                return;
+            }
+        }
         String caminhoArquivo = "src/main/java/com/example/projetofinaljavafx/arquivos/diretorios.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminhoArquivo, true))) {
             writer.write(caminho);
@@ -25,8 +30,6 @@ public class DiretorioDao {
     }
 
     public void carregarDiretorios() throws IOException {
-        System.out.println("Carregar");
-
         String caminhoArquivo = "src/main/java/com/example/projetofinaljavafx/arquivos/diretorios.txt";
         File arquivo = new File(caminhoArquivo);
 

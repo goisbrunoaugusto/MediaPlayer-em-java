@@ -1,20 +1,17 @@
 package com.example.projetofinaljavafx;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.example.projetofinaljavafx.modelo.Usuario;
-import com.example.projetofinaljavafx.modelo.UsuarioVIP;
 import com.example.projetofinaljavafx.dao.DiretorioDao;
 import com.example.projetofinaljavafx.dao.MusicaDao;
 import com.example.projetofinaljavafx.dao.UsuarioDao;
 import com.example.projetofinaljavafx.modelo.Musica;
 import com.example.projetofinaljavafx.modelo.Playlist;
-import javafx.event.ActionEvent;
+import com.example.projetofinaljavafx.modelo.Usuario;
+import com.example.projetofinaljavafx.modelo.UsuarioVIP;
+
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -28,12 +25,11 @@ public class Player {
     Media media;
     MediaPlayer mediaPlayer;
 
-    public void carregarUsuarios() throws IOException {
+    public void carregarUsuarios() {
         try {
             u.carregarUsuarios();
         }
         catch(Exception e) {
-            throw e;
         }
     }
 
@@ -148,5 +144,9 @@ public class Player {
         media = new Media(new File(m.getMusicas().get(musicaAtual).getCaminho()).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
+    }
+
+    public ArrayList<Musica> getMusicas() {
+        return m.getMusicas();
     }
 }

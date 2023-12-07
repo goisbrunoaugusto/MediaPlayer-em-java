@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class DiretorioDao {
@@ -24,8 +25,12 @@ public class DiretorioDao {
     }
 
     public void carregarDiretorios() throws IOException {
+        System.out.println("Carregar");
+
         String caminhoArquivo = "src/main/java/com/example/projetofinaljavafx/arquivos/diretorios.txt";
         File arquivo = new File(caminhoArquivo);
+
+        new PrintWriter("src/main/java/com/example/projetofinaljavafx/arquivos/musicas.txt").close();
 
         if (!arquivo.exists()) {
             arquivo.getParentFile().mkdirs();
@@ -54,7 +59,7 @@ public class DiretorioDao {
                 int indicePonto = caminhoArquivo.lastIndexOf(".");
 
                 if (indicePonto >= 0 && indicePonto < caminhoArquivo.length()) {
-                    if (caminhoArquivo.substring(indicePonto).equals("mp3")) {
+                    if (caminhoArquivo.substring(indicePonto).equals(".mp3")) {
                         writer.write(caminhoArquivo);
                         writer.newLine();
                     }

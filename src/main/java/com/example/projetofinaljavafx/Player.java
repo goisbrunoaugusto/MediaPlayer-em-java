@@ -1,6 +1,7 @@
 package com.example.projetofinaljavafx;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -144,7 +145,7 @@ public class Player {
 
 
     public void tocarMusica() {
-        media = new Media(m.getMusicas().get(musicaAtual).getCaminho());
+        media = new Media(new File(m.getMusicas().get(musicaAtual).getCaminho()).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
     }

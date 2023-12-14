@@ -24,4 +24,9 @@ public class Musica {
     public void setCaminho(String caminho) {
         this.caminho = caminho;
     }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
 }

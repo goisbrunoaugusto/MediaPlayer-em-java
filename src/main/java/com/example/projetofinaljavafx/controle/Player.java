@@ -25,6 +25,10 @@ public class Player {
     Media media;
     MediaPlayer mediaPlayer;
 
+    public void setUsuarioLogado(Usuario usuario) {
+        usuarioLogado = usuario;
+    }
+
     public void carregarUsuarios() {
         try {
             u.carregarUsuarios();
@@ -108,25 +112,17 @@ public class Player {
         return true;
     }
     
-    public boolean adicionarMusicaEmPlaylist(String caminhoMusica, String nomePlaylist) {
+    public boolean adicionarMusicaEmPlaylist(Musica musica, String nomePlaylist) {
         if(!(usuarioLogado instanceof UsuarioVIP)) {
             return false;
         }
         
-        Musica musicaAdicionada = null;
-        for(Musica musica : m.getMusicas()) {
-            if(musica.getCaminho() == caminhoMusica) {
-                musicaAdicionada = musica;
-                break;
-            }
-        }
-        
-        if(musicaAdicionada == null) {
+        if(musica == null) {
             return false;
         }
         
         try {
-            ((UsuarioVIP)usuarioLogado).getP().adicionarMusica(nomePlaylist, musicaAdicionada, usuarioLogado);
+            ((UsuarioVIP)usuarioLogado).getP().adicionarMusica(nomePlaylist, musica, usuarioLogado);
         } 
         catch (IOException e) {
             return false;
@@ -139,11 +135,23 @@ public class Player {
         return usuarioLogado;
     }
 
+    public ArrayList<Playlist> getPlaylists() {
+        if(!(usuarioLogado instanceof UsuarioVIP))  {
+            return new ArrayList<>();
+        }
 
-    public void tocarMusica() {
-        media = new Media(new File(m.getMusicas().get(musicaAtual).getCaminho()).toURI().toString());
+        return ((UsuarioVIP)usuarioLogado).getP().getPlaylists();
+    }
+
+
+    public void tocarMusica(Musica musica) {
+        media = new Media(new File(musica.getCaminho()).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
+    }
+
+    public void pararMusica() {
+        mediaPlayer.stop();
     }
 
     public ArrayList<Musica> getMusicas() {

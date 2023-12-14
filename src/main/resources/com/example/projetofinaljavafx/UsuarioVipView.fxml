@@ -6,10 +6,10 @@
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetofinaljavafx.controle.ViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetofinaljavafx.controle.UsuarioVipController">
    <children>
       <Button fx:id="AdicionarDiretorioBotao" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#adicionarDiretorio" text="Adicionar Diretório" />
-      <Button fx:id="AdicionarPlaylistBotao" layoutX="131.0" layoutY="14.0" mnemonicParsing="false" onAction="#adicionarPlaylist" text="Adicionar Playlist" />
+      <Button fx:id="AdicionarPlaylistBotao" layoutX="153.0" layoutY="14.0" mnemonicParsing="false" onAction="#adicionarPlaylist" text="Adicionar Playlist" />
       <ListView fx:id="MusicasListView" layoutX="21.0" layoutY="100.0" prefHeight="200.0" prefWidth="157.0" />
       <Label layoutX="21.0" layoutY="76.0" text="Musicas" />
       <ListView fx:id="PlaylistListView" layoutX="214.0" layoutY="100.0" prefHeight="200.0" prefWidth="174.0" />
@@ -18,7 +18,8 @@
       <Button fx:id="musicaPosteriorBotao" layoutX="144.0" layoutY="340.0" mnemonicParsing="false" onAction="#musicaPosterior" text="Next" />
       <Button fx:id="musicaAnteriorBotao" layoutX="22.0" layoutY="340.0" mnemonicParsing="false" onAction="#musicaAnterior" text="Previous" />
       <ProgressBar layoutX="200.0" layoutY="344.0" prefHeight="18.0" prefWidth="386.0" progress="0.0" />
-      <ListView fx:id="MusicasListView1" layoutX="417.0" layoutY="100.0" prefHeight="200.0" prefWidth="157.0" />
+      <ListView fx:id="MusicasPlaylistListView" layoutX="417.0" layoutY="100.0" prefHeight="200.0" prefWidth="157.0" />
       <Label layoutX="417.0" layoutY="76.0" prefHeight="17.0" prefWidth="42.0" text="Playlists" />
+      <Button fx:id="AdicionarMusicaPlaylistBotao" layoutX="287.0" layoutY="14.0" mnemonicParsing="false" onAction="#adicionarMusicaPlaylist" text="Adicionar Música em Playlist" />
    </children>
 </AnchorPane>

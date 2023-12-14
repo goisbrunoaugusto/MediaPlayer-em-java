@@ -32,4 +32,9 @@ public class Playlist {
     public void setUsuarioDono(Usuario usuarioDono) {
         this.usuarioDono = usuarioDono;
     }
+
+    @Override
+    public String toString() {
+        return titulo;
+    }
 }

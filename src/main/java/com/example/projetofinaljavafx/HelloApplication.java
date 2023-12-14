@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class HelloApplication extends Application {
     private static Stage stg;
@@ -26,6 +27,10 @@ public class HelloApplication extends Application {
     public void changeScene(String fxml) throws IOException {
         Parent pane = FXMLLoader.load(getClass().getResource(fxml));
         stg.getScene().setRoot(pane);
+    }
+
+    public URL getURL(String fxml) throws IOException {
+        return getClass().getResource(fxml);
     }
 
     public static void main(String[] args) {

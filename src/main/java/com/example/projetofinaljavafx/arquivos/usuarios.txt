@@ -2,3 +2,7 @@ Bruno
 123456
 VIP
 1
+Pedro
+123456
+Comum
+2

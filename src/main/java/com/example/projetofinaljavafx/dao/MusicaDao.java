@@ -27,9 +27,9 @@ public class MusicaDao {
             String linha;
             musicas.clear();
             while((linha = br.readLine()) != null) {
-                int indicePonto = linha.lastIndexOf(".");
-                int indiceBarra = 0; //linha.lastIndexOf("/") + 1;
-                String nomeMusica = linha.substring(indiceBarra, indicePonto);
+                File arquivoMusica = new File(linha);
+                String nomeMusica = arquivoMusica.getName();
+                nomeMusica = nomeMusica.substring(0, nomeMusica.lastIndexOf('.'));
                 
                 Musica m = new Musica(nomeMusica, linha);
                 musicas.add(m);

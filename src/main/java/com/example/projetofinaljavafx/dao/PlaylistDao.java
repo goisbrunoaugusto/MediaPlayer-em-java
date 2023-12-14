@@ -13,7 +13,11 @@ import com.example.projetofinaljavafx.modelo.Playlist;
 import com.example.projetofinaljavafx.modelo.Usuario;
 
 public class PlaylistDao {
-    ArrayList<Playlist> playlists;
+    ArrayList<Playlist> playlists = new ArrayList<>();
+
+    public ArrayList<Playlist> getPlaylists() {
+        return playlists;
+    }
     
     public void carregarPlaylists(Usuario usuario) throws IOException {
         String caminhoPasta = "src/main/java/com/example/projetofinaljavafx/arquivos/playlists";
@@ -24,17 +28,18 @@ public class PlaylistDao {
         }
 
         for(File f : pasta.listFiles()) {
-            int indiceInicio = f.getName().indexOf("_");
-            indiceInicio++;
+            // playlist_(nome).txt
+            int indiceInicio = f.getName().indexOf("_") + 1;
             int indiceFinal = f.getName().length() - 4;
 
             String nomePlaylist = f.getName().substring(indiceInicio, indiceFinal);
+            System.out.println(nomePlaylist);
 
             try(BufferedReader br = new BufferedReader(new FileReader(f))) {
                 String nomeUsuario = br.readLine();
                 int idUsuario = Integer.parseInt(br.readLine());
 
-                if(nomeUsuario != usuario.getLogin() || idUsuario != usuario.getId()) {
+                if(!nomeUsuario.equals(usuario.getLogin()) || idUsuario != usuario.getId()) {
                     continue;
                 }
 
@@ -71,7 +76,7 @@ public class PlaylistDao {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminhoPlaylist, true))) {
             writer.write(usuarioDono.getLogin());
             writer.newLine();
-            writer.write(usuarioDono.getId());
+            writer.write(Integer.toString(usuarioDono.getId()));
             writer.newLine();
 
         } 
@@ -86,13 +91,26 @@ public class PlaylistDao {
     }
 
     public void adicionarMusica(String nomePlaylist, Musica musica, Usuario usuario) throws IOException {
+        Playlist playlistArray = null;
+        for(Playlist p : playlists) {
+            if(p.getTitulo() == nomePlaylist) {
+                playlistArray = p;
+            }
+        }
+
+        for(Musica m : playlistArray.getMusicas()) {
+            if(m.getCaminho().equals(musica.getCaminho())) {
+                return;
+            }
+        }
+
         String caminhoPlaylist = "src/main/java/com/example/projetofinaljavafx/arquivos/playlists/playlist_" + nomePlaylist + ".txt";
 
         try (BufferedReader br = new BufferedReader(new FileReader(caminhoPlaylist))) {
             String login = br.readLine();
             int id = Integer.parseInt(br.readLine());
 
-            if (usuario.getId() != id || usuario.getLogin() != login) {
+            if (usuario.getId() != id || !usuario.getLogin().equals(login)) {
                 return;
             }
         }
@@ -110,12 +128,6 @@ public class PlaylistDao {
             throw e;
         }
 
-        Playlist playlistArray = null;
-        for(Playlist p : playlists) {
-            if(p.getTitulo() == nomePlaylist) {
-                playlistArray = p;
-            }
-        }
 
         playlistArray.getMusicas().add(musica);
     }

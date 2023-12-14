@@ -52,9 +52,17 @@ public class LoginController implements Initializable {
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
-                //m.changeScene("UsuarioVipView.fxml");
             }else{
-                m.changeScene("UsuarioComumView.fxml");
+                FXMLLoader loader = new FXMLLoader(m.getURL("UsuarioComumView.fxml"));
+                Parent root = loader.load();
+
+                UsuarioComumController u = loader.getController();
+                u.setUsuarioLogado(player.getUsuarioLogado());
+
+                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
             }
         }
     }

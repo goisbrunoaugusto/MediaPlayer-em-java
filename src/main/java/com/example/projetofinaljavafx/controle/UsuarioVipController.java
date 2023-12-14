@@ -23,7 +23,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Window;
 
 public class UsuarioVipController implements Initializable {
-    Player player = new Player();
+    private Player player = new Player();
 
     @FXML
     private Button AdicionarDiretorioBotao;
@@ -51,10 +51,12 @@ public class UsuarioVipController implements Initializable {
 
     @FXML
     private Button tocarMusicaBotao;
+    @FXML
+    private Button Stop;
 
-    Musica musicaAtual;
+    private Musica musicaAtual;
 
-    Playlist playlistAtual;
+    private Playlist playlistAtual;
 
     boolean selecionadoPlaylist = false;
 
@@ -227,5 +229,9 @@ public class UsuarioVipController implements Initializable {
     @FXML
     void tocarMusica(ActionEvent event) {
         player.tocarMusica(musicaAtual);
+    }
+    @FXML
+    void pararMusica(ActionEvent event) {
+        player.pararMusica();
     }
 }

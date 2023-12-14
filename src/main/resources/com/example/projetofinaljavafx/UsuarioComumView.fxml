@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400" minWidth="600" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetofinaljavafx.controle.UsuarioComumController">
@@ -11,9 +10,9 @@
       <Button fx:id="AdicionarDiretorioBotao" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#adicionarDiretorio" text="Adicionar Diretório" />
       <ListView fx:id="MusicasListView" layoutX="21.0" layoutY="100.0" prefHeight="200.0" prefWidth="554.0" />
       <Label layoutX="21.0" layoutY="76.0" text="Musicas" />
-      <Button fx:id="PlayButton" layoutX="93.0" layoutY="340.0" mnemonicParsing="false" text="Play" />
-      <Button fx:id="NextMusicButton" layoutX="144.0" layoutY="340.0" mnemonicParsing="false" text="Next" />
-      <Button fx:id="PreviousMusicButton" layoutX="22.0" layoutY="340.0" mnemonicParsing="false" text="Previous" />
-      <ProgressBar layoutX="200.0" layoutY="344.0" prefHeight="18.0" prefWidth="386.0" progress="0.0" />
+      <Button fx:id="PlayButton" layoutX="93.0" layoutY="340.0" mnemonicParsing="false" onAction="#tocarMusica" text="Play" />
+      <Button fx:id="NextMusicButton" layoutX="202.0" layoutY="340.0" mnemonicParsing="false" onAction="#musicaPosterior" text="Next" />
+      <Button fx:id="PreviousMusicButton" layoutX="22.0" layoutY="340.0" mnemonicParsing="false" onAction="#musicaAnterior" text="Previous" />
+      <Button fx:id="Stop" layoutX="141.0" layoutY="340.0" mnemonicParsing="false" onAction="#pararMusica" text="Stop" />
    </children>
 </AnchorPane>

@@ -1,0 +1,2 @@
+C:\Users\bruno\Downloads\Faculdade\LP2\Unidade 3\ProjetoFinalJavaFX\src\main\resources\Musicas\hino-vasco-da-gama.mp3
+C:\Users\bruno\Downloads\Faculdade\LP2\Unidade 3\ProjetoFinalJavaFX\src\main\resources\Musicas\mc-fioti-luz-do-luar.mp3

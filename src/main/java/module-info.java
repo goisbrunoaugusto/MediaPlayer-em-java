@@ -6,4 +6,6 @@ module com.example.projetofinaljavafx {
 
     opens com.example.projetofinaljavafx to javafx.fxml;
     exports com.example.projetofinaljavafx;
+    exports com.example.projetofinaljavafx.controle;
+    opens com.example.projetofinaljavafx.controle to javafx.fxml;
 }

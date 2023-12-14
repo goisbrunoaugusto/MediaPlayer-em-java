@@ -1,1 +1,1 @@
-/home/pedro/projetos/ufrn/MediaPlayer-em-java/src/main/resources/Musicas/Love_Gostosinho.mp3
+C:\Users\bruno\Downloads\Musicas\hino-vasco-da-gama.mp3

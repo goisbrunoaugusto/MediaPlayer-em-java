@@ -1,4 +1,4 @@
-package com.example.projetofinaljavafx;
+package com.example.projetofinaljavafx.controle;
 
 import java.io.File;
 import java.io.IOException;

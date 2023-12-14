@@ -1,12 +1,4 @@
-Pedro
-123456
-VIP
-1
-Giovanna
-123456dfasf
-Comum
-2
 Bruno
 123456
 VIP
-3
+1

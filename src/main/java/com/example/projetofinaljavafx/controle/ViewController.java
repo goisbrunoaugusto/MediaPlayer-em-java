@@ -1,28 +1,25 @@
-package com.example.projetofinaljavafx;
+package com.example.projetofinaljavafx.controle;
 
-import com.example.projetofinaljavafx.modelo.Musica;
+import com.example.projetofinaljavafx.HelloApplication;
 import com.example.projetofinaljavafx.modelo.UsuarioVIP;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ViewController implements Initializable{
     Player player = new Player();
+    String[] musicas = {"hino do vasco"};
+
     //cadastrar
     @FXML
     private Button cadastrarBotao;
@@ -54,6 +51,7 @@ public class ViewController implements Initializable{
     @FXML
     private ListView<?> MusicasListViewComum;
 
+
     @FXML
     private ListView<?> PlaylistListView;
 
@@ -80,6 +78,8 @@ public class ViewController implements Initializable{
         player.carregarUsuarios();
         player.carregarDiretorios();
         player.carregarMusicas();
+        MusicasListView.getItems().addAll(musicas);
+
     }
 
     //----------------------------------------------
@@ -122,6 +122,7 @@ public class ViewController implements Initializable{
         if (diretorio != null) {
             player.cadastrarDiretorio(diretorio.getAbsolutePath());
         }
+        player.carregarMusicas();
     }
 
     @FXML
@@ -143,6 +144,8 @@ public class ViewController implements Initializable{
     void tocarMusica(ActionEvent event) {
         player.tocarMusica();
     }
+
+
     //--------------------------------------------
     //Log In
     public void userLogIn() throws IOException {

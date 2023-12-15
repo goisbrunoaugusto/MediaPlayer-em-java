@@ -33,7 +33,6 @@ public class PlaylistDao {
             int indiceFinal = f.getName().length() - 4;
 
             String nomePlaylist = f.getName().substring(indiceInicio, indiceFinal);
-            System.out.println(nomePlaylist);
 
             try(BufferedReader br = new BufferedReader(new FileReader(f))) {
                 String nomeUsuario = br.readLine();

@@ -1,2 +1,6 @@
-C:\Users\bruno\Downloads\Faculdade\LP2\Unidade 3\ProjetoFinalJavaFX\src\main\resources\Musicas\hino-vasco-da-gama.mp3
-C:\Users\bruno\Downloads\Faculdade\LP2\Unidade 3\ProjetoFinalJavaFX\src\main\resources\Musicas\mc-fioti-luz-do-luar.mp3
+C:\Users\Giovanna\Downloads\musicas\Love Gostosinho - Nattan e Felipe Amorim.mp3
+C:\Users\Giovanna\Downloads\musicas\Matheus Fernandes e Xand Avião - Balanço da Rede.mp3
+C:\Users\Giovanna\Downloads\musicas\Taylor Swift - ...Ready For It.mp3
+C:\Users\Giovanna\Downloads\musicas\Taylor Swift - Blank Space.mp3
+C:\Users\Giovanna\Downloads\musicas\Taylor Swift - Dear John.mp3
+C:\Users\Giovanna\Downloads\musicas\Taylor Swift - Getaway Car.mp3

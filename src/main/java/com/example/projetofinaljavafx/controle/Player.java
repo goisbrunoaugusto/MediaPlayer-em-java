@@ -145,6 +145,9 @@ public class Player {
 
 
     public void tocarMusica(Musica musica) {
+        if(mediaPlayer != null) {
+            mediaPlayer.stop();
+        }
         media = new Media(new File(musica.getCaminho()).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();

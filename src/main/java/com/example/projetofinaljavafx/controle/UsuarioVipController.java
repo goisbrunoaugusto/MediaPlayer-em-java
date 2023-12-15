@@ -2,7 +2,6 @@ package com.example.projetofinaljavafx.controle;
 
 import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -22,44 +21,92 @@ import javafx.scene.control.TextInputDialog;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Window;
 
+/**
+ * Classe que controla a tela do usuário VIP.
+ */
 public class UsuarioVipController implements Initializable {
+    /**
+     * Instância da classe Player.
+     */
     private Player player = new Player();
 
+    /**
+     * Botão de adicionar diretório.
+     */
     @FXML
     private Button AdicionarDiretorioBotao;
 
+    /**
+     * Botão de adicionar playlist.
+     */
     @FXML
     private Button AdicionarPlaylistBotao;
 
+    /**
+     * Botão de adicionar música à playlist.
+     */
     @FXML
     private Button AdicionarMusicaPlaylistBotao;
 
+    /**
+     * Lista de músicas.
+     */
     @FXML
     private ListView<Musica> MusicasListView;
 
+    /**
+     * Lista de músicas da playlist.
+     */
     @FXML
     private ListView<Musica> MusicasPlaylistListView;
 
+    /**
+     * Lista de playlists.
+     */
     @FXML
     private ListView<Playlist> PlaylistListView;
 
+    /**
+     * Botão de música anterior.
+     */
     @FXML
     private Button musicaAnteriorBotao;
 
+    /**
+     * Botão de próxima música.
+     */
     @FXML
     private Button musicaPosteriorBotao;
 
+    /**
+     * Botão de tocar música.
+     */
     @FXML
     private Button tocarMusicaBotao;
+    /**
+     * Botão de parar música.
+     */
     @FXML
     private Button Stop;
 
+    /**
+     * Música atual.
+     */
     private Musica musicaAtual;
 
+    /**
+     * Playlist atual.
+     */
     private Playlist playlistAtual;
 
+    /**
+     * Indica se a música atual foi selecionada na playlist.
+     */
     boolean selecionadoPlaylist = false;
 
+    /**
+     * Inicializa a tela do usuário VIP.
+     */
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1) {
         player.carregarUsuarios();
@@ -96,27 +143,44 @@ public class UsuarioVipController implements Initializable {
         atualizarMusicas();
     }
 
+    /**
+     * Atualiza a lista de músicas.
+     */
     public void atualizarMusicas() {
         MusicasListView.getItems().clear();
         MusicasListView.getItems().addAll(player.getMusicas());
     }
 
+    /**
+     * Atualiza a lista de playlists.
+     */
     public void atualizarPlaylists() {
         PlaylistListView.getItems().clear();
         PlaylistListView.getItems().addAll(player.getPlaylists());
     }
 
+    /**
+     * Atualiza a lista de músicas da playlist.
+     */
     public void atualizarMusicasPlaylist() {
         MusicasPlaylistListView.getItems().clear();
         MusicasPlaylistListView.getItems().addAll(playlistAtual.getMusicas());
     }
 
+    /**
+     * Altera o usuário logado.
+     * @param u Usuário logado.
+     */
     public void setUsuarioLogado(Usuario u) {
         player.setUsuarioLogado(u);
         player.carregarPlaylists();
         atualizarPlaylists();
     }
 
+    /**
+     * Adiciona um diretório.
+     * @param actionEvent Evento de clique no botão.
+     */
     @FXML
     public void adicionarDiretorio(ActionEvent actionEvent) {
         Node source = (Node) actionEvent.getSource();
@@ -134,6 +198,10 @@ public class UsuarioVipController implements Initializable {
         atualizarMusicas();
     }
 
+    /**
+     * Adiciona uma playlist.
+     * @param event Evento de clique no botão.
+     */
     @FXML
     void adicionarPlaylist(ActionEvent event) {
         TextInputDialog tDialog = new TextInputDialog();
@@ -149,12 +217,20 @@ public class UsuarioVipController implements Initializable {
         atualizarPlaylists();
     }
 
+    /**
+     * Adiciona uma música à playlist.
+     * @param event Evento de clique no botão.
+     */
     @FXML
     void adicionarMusicaPlaylist(ActionEvent event) {
         player.adicionarMusicaEmPlaylist(musicaAtual, playlistAtual.getTitulo());
         atualizarMusicasPlaylist();
     }
 
+    /**
+     * Toca a música anterior.
+     * @param event Evento de clique no botão.
+     */
     @FXML
     void musicaAnterior(ActionEvent event) {
         if(!selecionadoPlaylist) {
@@ -191,6 +267,10 @@ public class UsuarioVipController implements Initializable {
 
     }
 
+    /**
+     * Toca a próxima música.
+     * @param event Evento de clique no botão.
+     */
     @FXML
     void musicaPosterior(ActionEvent event) {
         if(!selecionadoPlaylist) {
@@ -226,10 +306,19 @@ public class UsuarioVipController implements Initializable {
         player.tocarMusica(musicaAtual);
     }
 
+    /**
+     * Toca a música.
+     * @param event Evento de clique no botão.
+     */
     @FXML
     void tocarMusica(ActionEvent event) {
         player.tocarMusica(musicaAtual);
     }
+
+    /**
+     * Para a música.
+     * @param event Evento de clique no botão.
+     */
     @FXML
     void pararMusica(ActionEvent event) {
         player.pararMusica();

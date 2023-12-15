@@ -12,13 +12,28 @@ import com.example.projetofinaljavafx.modelo.Musica;
 import com.example.projetofinaljavafx.modelo.Playlist;
 import com.example.projetofinaljavafx.modelo.Usuario;
 
+/**
+ * Classe que realiza a persistência das playlists.
+ */
 public class PlaylistDao {
+    /**
+     * Lista de playlists.
+     */
     ArrayList<Playlist> playlists = new ArrayList<>();
 
+    /**
+     * Retorna a lista de playlists.
+     * @return Lista de playlists.
+     */
     public ArrayList<Playlist> getPlaylists() {
         return playlists;
     }
     
+    /**
+     * Carrega as playlists salvas no arquivo para a lista de playlists.
+     * @param usuario Usuário que está logado.
+     * @throws IOException caso haja erro ao ler o arquivo.
+     */
     public void carregarPlaylists(Usuario usuario) throws IOException {
         String caminhoPasta = "src/main/java/com/example/projetofinaljavafx/arquivos/playlists";
         File pasta = new File(caminhoPasta);
@@ -61,6 +76,13 @@ public class PlaylistDao {
         }
     }
 
+    /**
+     * Cadastra uma playlist.
+     * @param nome Nome da playlist.
+     * @param usuarioDono Usuário que está logado.
+     * @return true se a playlist foi cadastrada com sucesso, false caso contrário.
+     * @throws IOException caso haja erro ao ler o arquivo.
+     */
     public boolean cadastrarPlaylist(String nome, Usuario usuarioDono) throws IOException {
         String caminhoPlaylist = "src/main/java/com/example/projetofinaljavafx/arquivos/playlists/playlist_" + nome + ".txt";
         File arquivoPlaylist = new File(caminhoPlaylist);
@@ -89,6 +111,13 @@ public class PlaylistDao {
         return true;
     }
 
+    /**
+     * Adiciona uma música a uma playlist.
+     * @param nomePlaylist Nome da playlist.
+     * @param musica Música a ser adicionada.
+     * @param usuario Usuário que está logado.
+     * @throws IOException caso haja erro ao ler o arquivo.
+     */
     public void adicionarMusica(String nomePlaylist, Musica musica, Usuario usuario) throws IOException {
         Playlist playlistArray = null;
         for(Playlist p : playlists) {

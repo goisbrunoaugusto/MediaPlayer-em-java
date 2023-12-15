@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.example.projetofinaljavafx.modelo.Musica;
-import com.example.projetofinaljavafx.modelo.Playlist;
 import com.example.projetofinaljavafx.modelo.Usuario;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,27 +17,58 @@ import javafx.scene.control.ListView;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Window;
 
+/**
+ * Classe que controla a tela do usuário comum.
+ */
 public class UsuarioComumController implements Initializable {
+    /**
+     * Instância da classe Player.
+     */
     private Player player = new Player();
+    /**
+     * Música atual.
+     */
     private Musica musicaAtual;
 
+    /**
+     * Botão de adicionar diretório.
+     */
     @FXML
     private Button AdicionarDiretorioBotao;
 
+    /**
+     * Lista de músicas.
+     */
     @FXML
     private ListView<Musica> MusicasListView;
 
+    /**
+     * Botão de música anterior.
+     */
     @FXML
     private Button PreviousMusicButton;
 
+    /**
+     * Botão de próxima música.
+     */
     @FXML
     private Button NextMusicButton;
 
+    /**
+     * Botão de tocar música.
+     */
     @FXML
     private Button PlayButton;
+
+    /**
+     * Botão de parar música.
+     */
     @FXML
     private Button Stop;
 
+    /**
+     * Inicializa a tela do usuário comum.
+     */
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1) {
         player.carregarUsuarios();
@@ -55,14 +85,27 @@ public class UsuarioComumController implements Initializable {
         atualizarMusicas();
 
     }
+
+    /**
+     * Atualiza a lista de músicas.
+     */
     public void atualizarMusicas() {
         MusicasListView.getItems().clear();
         MusicasListView.getItems().addAll(player.getMusicas());
     }
+
+    /**
+     * Altera o usuário logado.
+     * @param u Novo usuário logado.
+     */
     public void setUsuarioLogado(Usuario u) {
         player.setUsuarioLogado(u);
     }
 
+    /**
+     * Adiciona um diretório.
+     * @param actionEvent Evento de clique no botão de adicionar diretório.
+     */
     @FXML
     public void adicionarDiretorio(ActionEvent actionEvent) {
         Node source = (Node) actionEvent.getSource();
@@ -80,6 +123,10 @@ public class UsuarioComumController implements Initializable {
         atualizarMusicas();
     }
 
+    /**
+     * Toca a música anterior.
+     * @param event Evento de clique no botão de música anterior.
+     */
     @FXML
     void musicaAnterior(ActionEvent event) {
         int i;
@@ -99,6 +146,10 @@ public class UsuarioComumController implements Initializable {
         player.tocarMusica(musicaAtual);
     }
 
+    /**
+     * Toca a próxima música.
+     * @param event Evento de clique no botão de próxima música.
+     */
     @FXML
     void musicaPosterior(ActionEvent event) {
         int i;
@@ -118,10 +169,19 @@ public class UsuarioComumController implements Initializable {
         player.tocarMusica(musicaAtual);
     }
 
+    /**
+     * Toca a música.
+     * @param event Evento de clique no botão de tocar música.
+     */
     @FXML
     void tocarMusica(ActionEvent event) {
         player.tocarMusica(musicaAtual);
     }
+
+    /**
+     * Para a música.
+     * @param event Evento de clique no botão de parar música.
+     */
     @FXML
     void pararMusica(ActionEvent event) {
         player.pararMusica();

@@ -11,14 +11,31 @@ import java.io.FileWriter;
 import com.example.projetofinaljavafx.modelo.Usuario;
 import com.example.projetofinaljavafx.modelo.UsuarioVIP;
 
+/**
+ * Classe que realiza a persistência dos usuários.
+ */
 public class UsuarioDao {
+    /**
+     * Lista de usuários.
+     */
     private ArrayList<Usuario> usuarios = new ArrayList<>();
+    /**
+     * Último id de usuário cadastrado.
+     */
     private int ultimoId = 0;
 
+    /**
+     * Retorna a lista de usuários.
+     * @return Lista de usuários.
+     */
     public ArrayList<Usuario> getUsuarios() {
         return usuarios;
     }
 
+    /**
+     * Carrega os usuários salvos no arquivo para a lista de usuários.
+     * @throws IOException caso haja erro ao ler o arquivo.
+     */
     public void carregarUsuarios() throws IOException {
         String caminhoArquivo = "src/main/java/com/example/projetofinaljavafx/arquivos/usuarios.txt";
         File arquivo = new File(caminhoArquivo);
@@ -59,6 +76,13 @@ public class UsuarioDao {
         }
     }
 
+    /**
+     * Cadastra um usuário, salvando-o no arquivo e na lista de usuários.
+     * @param nome Nome do usuário.
+     * @param senha Senha do usuário.
+     * @param tipo Tipo do usuário.
+     * @return true se o usuário foi cadastrado com sucesso, false caso contrário.
+     */
     public boolean cadastrarUsuario(String nome, String senha, String tipo) {
         if(existeUsuario(nome)){
             return false;
@@ -95,6 +119,11 @@ public class UsuarioDao {
         return true;
     }
 
+    /**
+     * Verifica se um usuário existe.
+     * @param nome Nome do usuário.
+     * @return true se o usuário existe, false caso contrário.
+     */
     public boolean existeUsuario(String nome) {
         for(Usuario u : usuarios) {
             if(u.getLogin().equals(nome)) {

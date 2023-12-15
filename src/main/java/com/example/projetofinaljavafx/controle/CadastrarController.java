@@ -15,27 +15,54 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+/**
+ * Classe que controla a tela de cadastro de usuários.
+ */
 public class CadastrarController implements Initializable {
+    /**
+     * Instância da classe Player.
+     */
     Player player = new Player();
 
+    /**
+     * Botão de cadastrar.
+     */
     @FXML
     private Button cadastrarBotao;
 
+    /**
+     * Campo de texto de senha.
+     */
     @FXML
     private PasswordField cadastroSenhaField;
 
+    /**
+     * Campo de texto de login.
+     */
     @FXML
     private TextField cadastroUsuarioField;
 
+    /**
+     * Checkbox de VIP.
+     */
     @FXML
     private CheckBox vipCheckBox;
 
+    /**
+     * Botão de voltar.
+     */
     @FXML
     private Button voltarBotao;
 
+    /**
+     * Label de erro.
+     */
     @FXML
     private Label labelErro;
 
+    /**
+     * Inicializa a tela de cadastro de usuários.
+     */
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1) {
         player.carregarUsuarios();
@@ -43,6 +70,11 @@ public class CadastrarController implements Initializable {
         player.carregarMusicas();
     }
 
+    /**
+     * Cadastra um usuário.
+     * @param event Evento de clique no botão de cadastrar.
+     * @throws IOException caso haja erro ao ler o arquivo.
+     */
     @FXML
     void Cadastrar(ActionEvent event) throws IOException {
         String selecionado = "Comum";
@@ -56,12 +88,21 @@ public class CadastrarController implements Initializable {
         }
     }
 
+    /**
+     * Volta para a tela de login.
+     * @param event Evento de clique no botão de voltar.
+     * @throws IOException caso haja erro ao ler o arquivo.
+     */
     @FXML
     void Voltar(ActionEvent event) throws IOException {
         HelloApplication m = new HelloApplication();
         m.changeScene("LoginView.fxml");
     }
 
+    /**
+     * Define se o usuário é VIP.
+     * @param event Evento de clique no checkbox de VIP.
+     */
     @FXML
     void ehVip(ActionEvent event) {
 

@@ -15,20 +15,46 @@ import com.example.projetofinaljavafx.modelo.UsuarioVIP;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * Classe que controla o player.
+ */
 public class Player {
-    private int musicaAtual = 0;
-    Playlist playlistAtual = null;
-    Usuario usuarioLogado = null;
-    UsuarioDao u = new UsuarioDao();
-    DiretorioDao d = new DiretorioDao();
-    MusicaDao m = new MusicaDao();
-    Media media;
-    MediaPlayer mediaPlayer;
+    /**
+     * Usuário logado no player.
+     */
+    private Usuario usuarioLogado = null;
+    /**
+     * Instância da classe UsuarioDao.
+     */
+    private UsuarioDao u = new UsuarioDao();
+    /**
+     * Instância da classe DiretorioDao.
+     */
+    private DiretorioDao d = new DiretorioDao();
+    /**
+     * Instância da classe MusicaDao.
+     */
+    private MusicaDao m = new MusicaDao();
+    /**
+     * Instância da classe Media.
+     */
+    private Media media;
+    /**
+     * Instância da classe MediaPlayer.
+     */
+    private MediaPlayer mediaPlayer;
 
+    /**
+     * Altera o usuário logado no player.
+     * @param usuario Novo usuário logado no player.
+     */
     public void setUsuarioLogado(Usuario usuario) {
         usuarioLogado = usuario;
     }
 
+    /**
+     * Carrega os usuários.
+     */
     public void carregarUsuarios() {
         try {
             u.carregarUsuarios();
@@ -37,6 +63,12 @@ public class Player {
         }
     }
 
+    /**
+     * Faz o login do usuário.
+     * @param senha Senha do usuário.
+     * @param login Login do usuário.
+     * @return True se o login foi realizado com sucesso, false caso contrário.
+     */
     public boolean fazerLogin(String senha, String login) throws IOException {
         for(Usuario i : u.getUsuarios()) {
             if(i.getLogin().equals(login) && i.getSenha().equals(senha)) {
@@ -47,9 +79,22 @@ public class Player {
         return false;
     }
 
+    /**
+     * Cadastra um usuário.
+     * @param senha Senha do usuário.
+     * @param login Login do usuário.
+     * @param tipo Tipo do usuário.
+     * @return True se o usuário foi cadastrado com sucesso, false caso contrário.
+     */
     public boolean cadastrarUsuario(String senha, String login, String tipo) {
             return u.cadastrarUsuario(login, senha, tipo);
     }
+
+    /**
+     * Cadastra um diretório.
+     * @param caminho Caminho do diretório.
+     * @return True se o diretório foi cadastrado com sucesso, false caso contrário.
+     */
     public boolean cadastrarDiretorio(String caminho) {
         try {
             d.cadastrarDiretorio(caminho);
@@ -61,6 +106,10 @@ public class Player {
         return true;
     }
 
+    /**
+     * Carrega os diretórios.
+     * @return True se os diretórios foram carregados com sucesso, false caso contrário.
+     */
     public boolean carregarDiretorios() {
         try {
             d.carregarDiretorios();
@@ -72,6 +121,10 @@ public class Player {
         return true;
     }
 
+    /**
+     * Carrega as músicas.
+     * @return True se as músicas foram carregadas com sucesso, false caso contrário.
+     */
     public boolean carregarMusicas() {
         try {
             m.carregarMusicas();
@@ -83,6 +136,10 @@ public class Player {
         return true;
     }
 
+    /**
+     * Carrega as playlists.
+     * @return True se as playlists foram carregadas com sucesso, false caso contrário.
+     */
     public boolean carregarPlaylists() {
         if(!(usuarioLogado instanceof UsuarioVIP)) {
             return false;
@@ -98,6 +155,11 @@ public class Player {
         return true;
     }
 
+    /**
+     * Cria uma playlist.
+     * @param nome Nome da playlist.
+     * @return True se a playlist foi criada com sucesso, false caso contrário.
+     */
     public boolean criarPlaylist(String nome) {
         if (!(usuarioLogado instanceof UsuarioVIP)) {
             return false;
@@ -112,6 +174,12 @@ public class Player {
         return true;
     }
     
+    /**
+     * Adiciona uma música a uma playlist.
+     * @param musica Música a ser adicionada.
+     * @param nomePlaylist Nome da playlist.
+     * @return True se a música foi adicionada com sucesso, false caso contrário.
+     */
     public boolean adicionarMusicaEmPlaylist(Musica musica, String nomePlaylist) {
         if(!(usuarioLogado instanceof UsuarioVIP)) {
             return false;
@@ -131,10 +199,18 @@ public class Player {
         return true;
     }
 
+    /**
+     * Retorna o usuário logado.
+     * @return Usuário logado.
+     */
     public Usuario getUsuarioLogado() {
         return usuarioLogado;
     }
 
+    /**
+     * Retorna as playlists do usuário logado.
+     * @return Playlists do usuário logado.
+     */
     public ArrayList<Playlist> getPlaylists() {
         if(!(usuarioLogado instanceof UsuarioVIP))  {
             return new ArrayList<>();
@@ -143,7 +219,10 @@ public class Player {
         return ((UsuarioVIP)usuarioLogado).getP().getPlaylists();
     }
 
-
+    /**
+     * Toca uma música.
+     * @param musica Música a ser tocada.
+     */
     public void tocarMusica(Musica musica) {
         if(mediaPlayer != null) {
             mediaPlayer.stop();
@@ -153,10 +232,17 @@ public class Player {
         mediaPlayer.play();
     }
 
+    /**
+     * Para a música que está tocando.
+     */
     public void pararMusica() {
         mediaPlayer.stop();
     }
 
+    /**
+     * Retorna as músicas.
+     * @return Músicas.
+     */
     public ArrayList<Musica> getMusicas() {
         return m.getMusicas();
     }
